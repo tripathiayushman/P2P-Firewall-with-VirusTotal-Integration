@@ -1,41 +1,90 @@
-# P2P Network Traffic Analyzer and VirusTotal Scanner
+# VirusTotal File Scanner
 
-This Python project captures peer-to-peer (P2P) network traffic using Wireshark/TShark, analyzes files for potential threats using the VirusTotal API, and provides real-time threat detection through a Kivy-based GUI application.
+A Python-based application that provides a user-friendly GUI for scanning files using the VirusTotal API. The application features a modern interface built with Kivy, allowing users to easily select and scan files for potential threats.
 
 ## Features
 
-- **Network Packet Capture**: Uses Wireshark/TShark to capture real-time P2P traffic and store it in PCAP format.
-- **File Scanning with VirusTotal**: Scans files captured from P2P connections for malware signatures using the VirusTotal API.
-- **Threat Detection and Logging**: Logs suspected threats and removes files flagged by VirusTotal as containing malware.
-- **Kivy GUI Interface**: Simple GUI interface to run scans and view output directly.
+- Modern GUI interface built with Kivy
+- File selection with improved navigation
+- Real-time scan progress tracking
+- Detailed scan results including:
+  - Basic file information
+  - Hash values (MD5, SHA1, SHA256)
+  - Results from multiple antivirus engines
+  - Color-coded detection status
+- Configurable settings
+- Comprehensive error handling and logging
 
 ## Requirements
 
 - Python 3.x
-- Wireshark (with TShark)
-- VirusTotal API key (free or premium)
-- Dependencies:
-  ```bash
-  pip install requests colorama kivy
-## Configurations:
-API_KEY = "your_virustotal_api_key"
-NETWORK_INTERFACE = "Wi-Fi"
-PROTOCOL = "smb"
-DIRECTORY_PATH = r"C:\Users\YourUsername\Directory"
+- Wireshark (with TShark) for network capture functionality
+- VirusTotal API key
 
-You’ll find a configuration section at the top of the script. Set the following parameters:
+## Installation
 
-API_KEY: Replace "YOUR_API_KEY_HERE" with your VirusTotal API key.
-NETWORK_INTERFACE: Set to your network interface name (e.g., "Wi-Fi").
-PROTOCOL: Set this to "smb" or any protocol used in the capture.
-DIRECTORY_PATH: Full path to the directory containing files you wish to analyze.
+1. Clone the repository:
+```bash
+git clone [your-repo-url]
+cd virus-total-scanner
+```
 
-## Contributions
-Contributions are welcome! Feel free to open issues or submit pull requests for improvements or bug fixes.
+2. Install required packages:
+```bash
+pip install -r requirements.txt
+```
 
-## Troubleshooting
-No Output in GUI: Ensure the configuration section is correctly filled out, and that the specified directory and interface are accessible.
-TShark Not Found: Ensure Wireshark (with TShark) is installed and correctly located at C:\Program Files\Wireshark\tshark.exe.
-Rate Limiting: Free VirusTotal API keys are rate-limited. If you encounter delays, consider upgrading or waiting a few minutes before retrying.
+3. Configure the application:
+   - Open `p2p_firewall.py`
+   - Replace `'YOUR_API_KEY_HERE'` with your VirusTotal API key
+   - Adjust other configuration settings as needed
 
+## Usage
 
+1. Run the application:
+```bash
+python p2p_firewall.py
+```
+
+2. Using the interface:
+   - Click "Select File" to choose a file to scan
+   - Use the navigation buttons or path input for easier file location
+   - Click "Start Scan" to begin the analysis
+   - View detailed results in the main window
+
+## Configuration
+
+The application can be configured by modifying the `CONFIG` dictionary in `p2p_firewall.py`:
+
+```python
+CONFIG = {
+    'API_KEY': 'YOUR_API_KEY_HERE',
+    'OUTPUT_DIR': str(Path.home() / 'Desktop' / 'virus_scan_results'),
+    'TSHARK_PATH': r'C:\Program Files\Wireshark\tshark.exe',
+    'NETWORK_INTERFACE': 'Wi-Fi',
+    'PROTOCOL': 'smb'
+}
+```
+
+## Error Handling
+
+The application includes comprehensive error handling for:
+- API connection issues
+- File access problems
+- Invalid paths
+- Timeout scenarios
+- Rate limiting
+
+All errors are logged to both the console and a log file for debugging.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Disclaimer
+
+This tool is for educational and research purposes only. Always ensure you have permission to scan files and follow VirusTotal's terms of service. 
