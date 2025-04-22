@@ -16,7 +16,7 @@ from kivy.uix.popup import Popup
 
 # Configuration
 CONFIG = {
-    'API_KEY': '622f7f1d6e26c1e67eaf6427754c7159b5fca3de6366a79eba36690227f0d0dc',  # Replace with your VirusTotal API key
+    'API_KEY': 'YOUR_API_KEY_HERE',  # Replace with your VirusTotal API key
     'NETWORK_INTERFACE': 'Wi-Fi',  # Default interface
     'PROTOCOL': 'smb',  # Default protocol
     'OUTPUT_DIR': str(Path.home() / 'Desktop' / 'virus_scan_results'),
